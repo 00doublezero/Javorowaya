@@ -1,0 +1,1 @@
+export const notebookViewport = { width: 1366, height: 768 };
