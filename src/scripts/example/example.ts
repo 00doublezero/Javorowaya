@@ -13,7 +13,7 @@ import ExamplePage from "../pages/example/ExamplePage";
         await examplePage.open("https://example.com");
         await examplePage.waitUntilPageLoaded();
         const exampleText = await examplePage.getElementText("h1");
-        revisor.strictEqual(exampleText, "Example Domain1", "Example page has no such text");
+        revisor.strictEqual(exampleText, "Example Domain", "The example page has been loaded successfully.", "The text on the example page was not shown.");
     }
     await browser.close();
 })();

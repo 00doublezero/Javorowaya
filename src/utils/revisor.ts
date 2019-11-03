@@ -1,20 +1,20 @@
 import chai from "chai";
 import logger from "../loggerConfig";
 
-export const strictEqual = (actual: any, expected: any, message?: string) => {
+export const strictEqual = (actual: any, expected: any, passMessage: string, failMessage?: string) => {
     let equality: boolean;
     try {
-     if (message === undefined) {
+     if (failMessage === undefined) {
         chai.assert.strictEqual(actual, expected);
      } else {
-         chai.assert.strictEqual(actual, expected, message);
+         chai.assert.strictEqual(actual, expected, failMessage);
      }
      equality = true;
  } catch (error) {
-     logger.err(error);
+     logger.testFailed(error.stack);
      equality = false;
  }
     if (equality === true) {
-     logger.testPassed(actual + " is equal to " + expected);
+     logger.testPassed(passMessage);
  }
 };
