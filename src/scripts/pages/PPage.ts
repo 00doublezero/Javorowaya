@@ -12,35 +12,35 @@ export default abstract class PuppeteerPage {
 
     public async open(path: string) {
         await this.page.goto(path).catch(() => {
-            logger.info(`Can't navigate to page '${path}'. Programm terminated.`);
+            logger.msg(`Can't navigate to page '${path}'. Programm terminated.`);
             process.exit();
         });
-        logger.info(`User navigated to page ${path}`);
+        logger.msg(`User navigated to page ${path}`);
     }
 
     public async clearInput(selector: string) {
         await this.page.evaluate((selector: string) => {
             document.body.querySelector(selector)!.setAttribute("value", "");
         }, selector);
-        logger.info(`Text input for "${selector}" selector cleared`);
+        logger.msg(`Text input for "${selector}" selector cleared`);
     }
 
     // async screenshot() {
     //     const uuid = await uuidv4();
     //     await this.page.screenshot({ path: uuid + ".png" });
-    //     logger.info(`The screenshot was taken`)
+    //     logger.msg(`The screenshot was taken`)
     // }
 
     public async waitUntilPageLoaded() {
         await this.page.waitForSelector(this.hookElement, { timeout: 10000 }).catch(() => {
-            logger.info(`Can't load element '${this.hookElement}'. Programm terminated.`);
+            logger.msg(`Can't load element '${this.hookElement}'. Programm terminated.`);
             process.exit();
         });
         await this.page.waitForSelector("body").catch(() => {
-            logger.info(`Can't navigate to page '${"body"}'. Programm terminated.`);
+            logger.msg(`Can't navigate to page '${"body"}'. Programm terminated.`);
             process.exit();
         });
-        logger.info(`After load page user on page: ${await this.page.title()}`);
+        logger.msg(`After load page user on page: ${await this.page.title()}`);
     }
 
     public async getHREF(aElement: string): Promise<string> {
@@ -82,7 +82,7 @@ export default abstract class PuppeteerPage {
                 currentHeight = await this.page.evaluate("document.body.scrollHeight");
             }
         } catch (e) {
-            logger.info(`Page scrolled down`);
+            logger.msg(`Page scrolled down`);
         }
     }
 

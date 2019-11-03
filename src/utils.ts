@@ -13,9 +13,9 @@ export const createDir = async (pathString: string): Promise<string> => {
     }
     try {
         await fsExtra.ensureDir(pathString);
-        logger.info(`The directory '${pathString}' was created.`);
+        logger.msg(`The directory '${pathString}' was created.`);
     } catch (err) {
-        logger.info(`The directory '${pathString}' cannot be created. Programm terminated.`);
+        logger.msg(`The directory '${pathString}' cannot be created. Programm terminated.`);
         process.exit();
     }
     return pathString;

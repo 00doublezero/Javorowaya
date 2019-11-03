@@ -18,7 +18,9 @@
     "winston": "*"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.4",
     "@types/fs-extra": "*",
-    "@types/puppeteer-core": "*"
+    "@types/puppeteer-core": "*",
+    "chai": "^4.2.0"
   }
 }

@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer-core";
 import { proxyDebugLaunch } from "../../launchConfig";
+import * as revisor from "../../utils/revisor";
 import { notebookViewport } from "../../viewportConfig";
 import ExamplePage from "../pages/example/ExamplePage";
 
@@ -12,7 +13,7 @@ import ExamplePage from "../pages/example/ExamplePage";
         await examplePage.open("https://example.com");
         await examplePage.waitUntilPageLoaded();
         const exampleText = await examplePage.getElementText("h1");
-        console.log("Text on header: " + exampleText);
+        revisor.strictEqual(exampleText, "Example Domain1", "Example page has no such text");
     }
     await browser.close();
 })();
