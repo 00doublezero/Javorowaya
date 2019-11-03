@@ -32,15 +32,16 @@ export default abstract class PuppeteerPage {
     // }
 
     public async waitUntilPageLoaded() {
+        // FIX: should completely rewrite this important method
         await this.page.waitForSelector(this.hookElement, { timeout: 10000 }).catch(() => {
-            logger.msg(`Can't load element '${this.hookElement}'. Programm terminated.`);
+            logger.err(`Can't load element '${this.hookElement}'. Programm terminated.`);
             process.exit();
         });
         await this.page.waitForSelector("body").catch(() => {
-            logger.msg(`Can't navigate to page '${"body"}'. Programm terminated.`);
+            logger.err(`Can't navigate to page '${"body"}'. Programm terminated.`);
             process.exit();
         });
-        logger.msg(`After load page user on page: ${await this.page.title()}`);
+        logger.msg(`The page is loaded and its title: ${await this.page.title()}`);
     }
 
     public async getHREF(aElement: string): Promise<string> {
