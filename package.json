@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "nodejs lib/scripts/debug.js",
-    "example": "nodejs lib/scripts/example/example.js"
+    "example": "nodejs lib/scripts/example/example.js",
+    "vk": "nodejs lib/scripts/vkAlbumsDownloader/vk.js -i $INPUT"
   },
   "author": "",
   "license": "ISC",
